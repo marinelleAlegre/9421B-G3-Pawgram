@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: pet_care
+-- Host: localhost    Database: petcare
 -- ------------------------------------------------------
--- Server version	5.7.11
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -163,18 +163,21 @@ DROP TABLE IF EXISTS `register`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `register` (
-  `register_id` int(11) NOT NULL,
-  `firstName` varchar(45) DEFAULT NULL,
-  `lastName` varchar(45) DEFAULT NULL,
-  `contactNumber` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `age` varchar(2) DEFAULT NULL,
-  `gender` varchar(1) DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  `typeOfuser` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`register_id`)
+  `register_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lastName` varchar(45) NOT NULL,
+  `firstName` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `birthDate` varchar(45) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `contactNumber` varchar(45) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  `typeOfuser` varchar(45) NOT NULL,
+  PRIMARY KEY (`register_id`),
+  UNIQUE KEY `register_id_UNIQUE` (`register_id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -335,10 +338,6 @@ LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'pet_care'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -349,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-07 15:38:58
+-- Dump completed on 2017-05-07 22:06:19
