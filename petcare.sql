@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: petcare
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.7.9
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `chat`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chat` (
   `chat_id` int(11) NOT NULL,
-  `chatDate` datetime DEFAULT NULL,
+  `chatDate` date DEFAULT NULL,
   `content` varchar(45) DEFAULT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
   `customerName` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `dateOfRegistration` datetime DEFAULT NULL,
+  `dateOfRegistration` date DEFAULT NULL,
   `pet_type` varchar(45) DEFAULT NULL,
   `registration_id` int(11) NOT NULL,
   PRIMARY KEY (`customer_id`)
@@ -110,9 +110,9 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `time` datetime DEFAULT NULL,
-  `total_amount` varchar(45) DEFAULT NULL,
+  `total_amount` int(6) DEFAULT NULL,
   `availService_desc` varchar(45) DEFAULT NULL,
   `invoice_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -156,23 +156,23 @@ LOCK TABLES `products` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `register`
+-- Table structure for table `registeration`
 --
 
-DROP TABLE IF EXISTS `register`;
+DROP TABLE IF EXISTS `registeration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `register` (
+CREATE TABLE `registeration` (
   `register_id` int(11) NOT NULL AUTO_INCREMENT,
   `lastName` varchar(45) NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(15) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `birthDate` varchar(45) NOT NULL,
-  `gender` varchar(1) NOT NULL,
+  `birthDate` date NOT NULL,
+  `gender` char(1) NOT NULL,
   `address` varchar(45) NOT NULL,
-  `contactNumber` varchar(45) NOT NULL,
+  `contactNumber` int(11) NOT NULL,
   `status` varchar(45) NOT NULL,
   `typeOfuser` varchar(45) NOT NULL,
   PRIMARY KEY (`register_id`),
@@ -182,12 +182,12 @@ CREATE TABLE `register` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `register`
+-- Dumping data for table `registeration`
 --
 
-LOCK TABLES `register` WRITE;
-/*!40000 ALTER TABLE `register` DISABLE KEYS */;
-/*!40000 ALTER TABLE `register` ENABLE KEYS */;
+LOCK TABLES `registeration` WRITE;
+/*!40000 ALTER TABLE `registeration` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registeration` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -226,9 +226,9 @@ CREATE TABLE `serviceprovider` (
   `serviceprovider_id` int(11) NOT NULL,
   `serviceproviderName` varchar(45) DEFAULT NULL,
   `expertise` varchar(45) DEFAULT NULL,
-  `dateOfRegistration` datetime DEFAULT NULL,
-  `workedStarted` datetime DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
+  `dateOfRegistration` date DEFAULT NULL,
+  `workedStarted` date DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
   `registration_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
   PRIMARY KEY (`serviceprovider_id`)
@@ -253,9 +253,9 @@ DROP TABLE IF EXISTS `servicerequest`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicerequest` (
   `servicerequest_id` int(11) NOT NULL,
-  `status` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
   `service_description` varchar(45) DEFAULT NULL,
-  `service_price` varchar(45) DEFAULT NULL,
+  `service_price` int(6) NOT NULL,
   PRIMARY KEY (`servicerequest_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -324,7 +324,7 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
   `invoice_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `history` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`invoice_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -348,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-07 22:06:19
+-- Dump completed on 2017-05-08 16:25:38
