@@ -11,7 +11,7 @@
 
     // If form submitted, insert values into the database.
     if (isset($_REQUEST['lastName'])){
-    	$lastName = stripcslashes($_REQUEST['lastName']);
+    	$lastName = stripslashes($_REQUEST['lastName']);
     	$lastName = mysqli_real_escape_string($con,$lastName);
     	$firstName = stripslashes($_REQUEST['firstName']);
     	$firstName = mysqli_real_escape_string($con,$firstName);
@@ -21,9 +21,9 @@
 		$password = mysqli_real_escape_string($con,$password);
 		$email = stripslashes($_REQUEST['email']);
 		$email = mysqli_real_escape_string($con,$email);
-		$birthDate = stripcslashes($_REQUEST['birthDate']);
+		$birthDate = stripslashes($_REQUEST['birthDate']);
 		$birthDate = mysqli_real_escape_string($con,$birthDate);
-		$gender = stripcslashes($_REQUEST['gender']);
+		$gender = stripslashes($_REQUEST['gender']);
 		$gender = mysqli_real_escape_string($con,$gender);
 		$address = stripslashes($_REQUEST['address']);
 		$address = mysqli_real_escape_string($con,$address);
