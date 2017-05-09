@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: petcare
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,8 +26,8 @@ CREATE TABLE `appointment` (
   `appointment_id` int(11) NOT NULL,
   `request_date` date NOT NULL,
   `expected_date` date NOT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  `time` varchar(45) DEFAULT NULL,
+  `status` varchar(45) NOT NULL,
+  `time` time(4) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
@@ -54,8 +54,8 @@ DROP TABLE IF EXISTS `chat`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chat` (
   `chat_id` int(11) NOT NULL,
-  `chatDate` datetime DEFAULT NULL,
-  `content` varchar(45) DEFAULT NULL,
+  `chatDate` date NOT NULL,
+  `content` varchar(45) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`chat_id`),
@@ -83,10 +83,10 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
-  `customerName` varchar(45) DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  `dateOfRegistration` datetime DEFAULT NULL,
-  `pet_type` varchar(45) DEFAULT NULL,
+  `customerName` varchar(45) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  `dateOfRegistration` date NOT NULL,
+  `pet_type` varchar(45) NOT NULL,
   `registration_id` int(11) NOT NULL,
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -110,10 +110,10 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
-  `time` datetime DEFAULT NULL,
-  `total_amount` varchar(45) DEFAULT NULL,
-  `availService_desc` varchar(45) DEFAULT NULL,
+  `date` date NOT NULL,
+  `time` time(4) NOT NULL,
+  `total_amount` int(6) NOT NULL,
+  `availService_desc` varchar(45) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`payment_id`)
@@ -138,10 +138,10 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
   `products_id` int(11) NOT NULL,
-  `product_description` varchar(45) DEFAULT NULL,
-  `product_name` varchar(45) DEFAULT NULL,
-  `product_price` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `product_description` varchar(45) NOT NULL,
+  `product_name` varchar(45) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`products_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,38 +156,39 @@ LOCK TABLES `products` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `register`
+-- Table structure for table `registeration`
 --
 
-DROP TABLE IF EXISTS `register`;
+DROP TABLE IF EXISTS `registeration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `register` (
+CREATE TABLE `registeration` (
   `register_id` int(11) NOT NULL AUTO_INCREMENT,
   `lastName` varchar(45) NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(15) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `birthDate` varchar(45) NOT NULL,
-  `gender` varchar(1) NOT NULL,
+  `birthDate` date NOT NULL,
+  `gender` char(1) NOT NULL,
   `address` varchar(45) NOT NULL,
-  `contactNumber` varchar(45) NOT NULL,
-  `status` varchar(45) NOT NULL,
+  `contactNumber` int(11) NOT NULL,
+  `status` varchar(45) NOT NULL DEFAULT 'Pending',
   `typeOfuser` varchar(45) NOT NULL,
   PRIMARY KEY (`register_id`),
   UNIQUE KEY `register_id_UNIQUE` (`register_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `register`
+-- Dumping data for table `registeration`
 --
 
-LOCK TABLES `register` WRITE;
-/*!40000 ALTER TABLE `register` DISABLE KEYS */;
-/*!40000 ALTER TABLE `register` ENABLE KEYS */;
+LOCK TABLES `registeration` WRITE;
+/*!40000 ALTER TABLE `registeration` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registeration` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -199,7 +200,7 @@ DROP TABLE IF EXISTS `servicecategory`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicecategory` (
   `servicecategory_id` int(11) NOT NULL,
-  `services` varchar(45) DEFAULT NULL,
+  `services` varchar(45) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   PRIMARY KEY (`servicecategory_id`)
@@ -224,11 +225,11 @@ DROP TABLE IF EXISTS `serviceprovider`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `serviceprovider` (
   `serviceprovider_id` int(11) NOT NULL,
-  `serviceproviderName` varchar(45) DEFAULT NULL,
-  `expertise` varchar(45) DEFAULT NULL,
-  `dateOfRegistration` datetime DEFAULT NULL,
-  `workedStarted` datetime DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
+  `serviceproviderName` varchar(45) NOT NULL,
+  `expertise` varchar(45) NOT NULL,
+  `dateOfRegistration` date NOT NULL,
+  `workedStarted` date NOT NULL,
+  `status` varchar(10) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
   PRIMARY KEY (`serviceprovider_id`)
@@ -253,9 +254,9 @@ DROP TABLE IF EXISTS `servicerequest`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicerequest` (
   `servicerequest_id` int(11) NOT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  `service_description` varchar(45) DEFAULT NULL,
-  `service_price` varchar(45) DEFAULT NULL,
+  `status` varchar(10) NOT NULL,
+  `service_description` varchar(45) NOT NULL,
+  `service_price` int(6) NOT NULL,
   PRIMARY KEY (`servicerequest_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -324,9 +325,10 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
   `invoice_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
-  `history` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`invoice_id`)
+  `date` date NOT NULL,
+  `history` varchar(45) NOT NULL,
+  PRIMARY KEY (`invoice_id`),
+  UNIQUE KEY `invoice_id_UNIQUE` (`invoice_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -338,6 +340,10 @@ LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'petcare'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -348,4 +354,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-07 22:06:19
+-- Dump completed on 2017-05-09 11:11:08
