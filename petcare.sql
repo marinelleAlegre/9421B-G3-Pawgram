@@ -23,16 +23,19 @@ DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointment` (
-  `appointment_id` int(11) NOT NULL,
+  `appointment_id` int(11) NOT NULL AUTO_INCREMENT,
   `request_date` date NOT NULL,
   `expected_date` date NOT NULL,
-  `status` varchar(45) NOT NULL,
+  `status` enum('Done','Not yet done') NOT NULL,
   `time` time(4) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
   PRIMARY KEY (`appointment_id`),
-  UNIQUE KEY `appointment_id_UNIQUE` (`appointment_id`)
+  UNIQUE KEY `appointment_id_UNIQUE` (`appointment_id`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
+  UNIQUE KEY `serviceprovider_id_UNIQUE` (`serviceprovider_id`),
+  UNIQUE KEY `servicerequest_id_UNIQUE` (`servicerequest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,7 +56,7 @@ DROP TABLE IF EXISTS `chat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chat` (
-  `chat_id` int(11) NOT NULL,
+  `chat_id` int(11) NOT NULL AUTO_INCREMENT,
   `chatDate` date NOT NULL,
   `content` varchar(45) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
@@ -82,13 +85,15 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
-  `customer_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `customerName` varchar(45) NOT NULL,
   `status` varchar(45) NOT NULL,
   `dateOfRegistration` date NOT NULL,
   `pet_type` varchar(45) NOT NULL,
   `registration_id` int(11) NOT NULL,
-  PRIMARY KEY (`customer_id`)
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -109,14 +114,17 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
-  `payment_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `time` time(4) NOT NULL,
   `total_amount` int(6) NOT NULL,
   `availService_desc` varchar(45) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  PRIMARY KEY (`payment_id`)
+  PRIMARY KEY (`payment_id`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
+  UNIQUE KEY `payment_id_UNIQUE` (`payment_id`),
+  UNIQUE KEY `invoice_id_UNIQUE` (`invoice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -137,12 +145,13 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
-  `products_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_description` varchar(45) NOT NULL,
   `product_name` varchar(45) NOT NULL,
   `product_price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`products_id`)
+  PRIMARY KEY (`products_id`),
+  UNIQUE KEY `products_id_UNIQUE` (`products_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -170,11 +179,11 @@ CREATE TABLE `registeration` (
   `password` varchar(15) NOT NULL,
   `email` varchar(45) NOT NULL,
   `birthDate` date NOT NULL,
-  `gender` char(1) NOT NULL,
+  `gender` enum('M','F') NOT NULL,
   `address` varchar(45) NOT NULL,
   `contactNumber` int(11) NOT NULL,
-  `status` varchar(45) NOT NULL DEFAULT 'Pending',
-  `typeOfuser` varchar(45) NOT NULL,
+  `status` enum('Accepted','Declined','Pending') NOT NULL,
+  `typeOfuser` enum('Client','Service Provider') NOT NULL,
   PRIMARY KEY (`register_id`),
   UNIQUE KEY `register_id_UNIQUE` (`register_id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
@@ -199,11 +208,14 @@ DROP TABLE IF EXISTS `servicecategory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicecategory` (
-  `servicecategory_id` int(11) NOT NULL,
-  `services` varchar(45) NOT NULL,
+  `servicecategory_id` int(11) NOT NULL AUTO_INCREMENT,
+  `services` enum('Grooming','Veterinary Services','Boarding') NOT NULL,
   `customer_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
-  PRIMARY KEY (`servicecategory_id`)
+  PRIMARY KEY (`servicecategory_id`),
+  UNIQUE KEY `servicecategory_id_UNIQUE` (`servicecategory_id`),
+  UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
+  UNIQUE KEY `serviceprovider_id_UNIQUE` (`serviceprovider_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -224,15 +236,18 @@ DROP TABLE IF EXISTS `serviceprovider`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `serviceprovider` (
-  `serviceprovider_id` int(11) NOT NULL,
+  `serviceprovider_id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceproviderName` varchar(45) NOT NULL,
   `expertise` varchar(45) NOT NULL,
   `dateOfRegistration` date NOT NULL,
   `workedStarted` date NOT NULL,
-  `status` varchar(10) NOT NULL,
+  `status` enum('Busy','Inactive','Free') NOT NULL,
   `registration_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
-  PRIMARY KEY (`serviceprovider_id`)
+  PRIMARY KEY (`serviceprovider_id`),
+  UNIQUE KEY `serviceprovider_id_UNIQUE` (`serviceprovider_id`),
+  UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
+  UNIQUE KEY `servicerequest_id_UNIQUE` (`servicerequest_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -253,11 +268,12 @@ DROP TABLE IF EXISTS `servicerequest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicerequest` (
-  `servicerequest_id` int(11) NOT NULL,
-  `status` varchar(10) NOT NULL,
+  `servicerequest_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` enum('Accepted','Declined','Pending') NOT NULL,
   `service_description` varchar(45) NOT NULL,
   `service_price` int(6) NOT NULL,
-  PRIMARY KEY (`servicerequest_id`)
+  PRIMARY KEY (`servicerequest_id`),
+  UNIQUE KEY `servicerequest_id_UNIQUE` (`servicerequest_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -280,7 +296,9 @@ DROP TABLE IF EXISTS `srcs`;
 CREATE TABLE `srcs` (
   `servicerequest_id` int(11) NOT NULL,
   `servicecategory_id` int(11) NOT NULL,
-  PRIMARY KEY (`servicerequest_id`)
+  PRIMARY KEY (`servicerequest_id`),
+  UNIQUE KEY `servicerequest_id_UNIQUE` (`servicerequest_id`),
+  UNIQUE KEY `servicecategory_id_UNIQUE` (`servicecategory_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -303,7 +321,9 @@ DROP TABLE IF EXISTS `srsp`;
 CREATE TABLE `srsp` (
   `servicerequest_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
-  PRIMARY KEY (`servicerequest_id`)
+  PRIMARY KEY (`servicerequest_id`),
+  UNIQUE KEY `servicerequest_id_UNIQUE` (`servicerequest_id`),
+  UNIQUE KEY `serviceprovider_id_UNIQUE` (`serviceprovider_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -324,7 +344,7 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `invoice_id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `history` varchar(45) NOT NULL,
   PRIMARY KEY (`invoice_id`),
@@ -354,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-09 11:11:08
+-- Dump completed on 2017-05-10 23:01:37
