@@ -1,62 +1,62 @@
 /*index html*/
 body{
-	box-sizing: border-box;
-	line-height: 1.5;
-	padding: 0;
-	margin: 0;
-	background-color: white;
-	text-align: center;
+    box-sizing: border-box;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    text-align: center;
 }
 
 .container{
-	width: 80%;
+    width: 80%;
     height: 50%;
-	margin: auto;
+    margin: auto;
 }
 
 ul{
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 header{
-	background: black;
-	padding-top: 30px;
-	color: white;
-	min-height: 70px;
-	border-bottom: #059305 3px solid;
+    background: black;
+    padding-top: 30px;
+    color: white;
+    min-height: 70px;
+    border-bottom: #059305 3px solid;
 }
 nav {
     font-family: "Calibri";
 }
 
 header a{
-	font-size: 18px;
-	color: white;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 header li{
-	float: left;
-	display: inline;
-	padding: 0 20px 0 20px;
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
 }
 
 header nav{
-	float: right;
-	margin-top: 10px;
+    float: right;
+    margin-top: 10px;
 }
 
 header .active a{
-	color: #059305;
-	font-weight: bold;
+    color: #059305;
+    font-weight: bold;
 }
 
 header a:hover{
-	color: #90EE90;
-	font-weight: bold;
+    color: #90EE90;
+    font-weight: bold;
 }
 
 h1 {
@@ -66,16 +66,16 @@ h1 {
 
 /*top navigator*/
 .topNav{
-	margin: auto;
+    margin: auto;
 }
 
 /*home page*/
 #home{
-	background: url("../images/background/dogCatwithOverlay.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	height: 100vh;
+    background: url("../images/background/dogCatwithOverlay.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
 }
 #about{
     background-color: white;
@@ -85,12 +85,8 @@ h1 {
     background-size: cover;
 }
 #pawmed{
-<<<<<<< HEAD
-    background: url("../images/background/b8.jpg");
-=======
     background: url("../images/background/b4.jpg");
     background-size: cover;
->>>>>>> 65b1fa5c4c5deb070c161921b3c07dd417843391
 }
 #pawgroom{
     background: url("../images/background/b2.jpg");
@@ -216,16 +212,6 @@ nav .dropdown:hover .dropdown-content {
     opacity: 1;
 }
 
-.clmn {
-   float:left;
-    width: 30%;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    margin-left: 20px;
-    margin-right: 20px;
-    opacity: 1;
-	
-}
 /* Display the columns below each other instead of side by side on small screens */
 @media (max-width: 650px) {
     .column {
@@ -234,17 +220,9 @@ nav .dropdown:hover .dropdown-content {
     }
 }
 
- .clmn{
-		width: 29%;
-		
-	}
 /* Add some shadows to create a card effect */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.crd {
-    box-shadow: 0 4px 8px 0 ;
 }
 
 /* Some left and right padding inside the container */
@@ -254,11 +232,6 @@ nav .dropdown:hover .dropdown-content {
 
 .container .card img {
     margin-top: 5px;
-}
-
-.cntnr .crd img {
-    margin-top: 10px;
-	height: 18 px;
 }
 /* Clear floats */
 .container::after, .row::after {
@@ -286,30 +259,6 @@ h2 {
     cursor: pointer;
     width: 100%;
 }
-
-.btn {
-    border-radius: 20px;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-}
-
-
-.price {
-	font-family: Calibri;
-	font-size: 13px;
-	
-}
-
-.cntnr {
-    font-family: Calibri;
-	font-size: 15px;
-)
 
 .button:hover {
     background-color: black;
