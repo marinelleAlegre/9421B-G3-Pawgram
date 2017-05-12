@@ -10,8 +10,8 @@ body{
 
 .container{
 	width: 80%;
+    height: 50%;
 	margin: auto;
-	overflow: hidden;
 }
 
 ul{
@@ -85,7 +85,12 @@ h1 {
     background-size: cover;
 }
 #pawmed{
+<<<<<<< HEAD
     background: url("../images/background/b8.jpg");
+=======
+    background: url("../images/background/b4.jpg");
+    background-size: cover;
+>>>>>>> 65b1fa5c4c5deb070c161921b3c07dd417843391
 }
 #pawgroom{
     background: url("../images/background/b2.jpg");
