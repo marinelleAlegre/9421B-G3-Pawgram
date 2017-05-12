@@ -81,63 +81,16 @@ h1 {
     background-color: white;
 }
 #contact{
+    background: url("../images/background/b5.png");
+    background-size: cover;
+}
+#pawmed{
+    background: url("../images/background/b8.jpg");
+}
+#pawgroom{
     background: url("../images/background/b2.jpg");
     background-size: cover;
 }
-#photography{
-    background: url("../images/background/p3.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-#services{
-    background: url("../images/background/p4.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-#pawmed{
-    background: url("../images/background/p6.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-#pettyshoot{
-    background: url("../images/background/p7.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-
-#pawgroom{
-    background: url("../images/background/p10.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-
-
-#healthypaws{
-    background: url("../images/background/p8.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-
-#petvacay{
-    background: url("../images/background/p11.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-}
-
 #store{
     background: url("../images/background/b1.jpg");
     background-repeat: no-repeat;
@@ -258,6 +211,16 @@ nav .dropdown:hover .dropdown-content {
     opacity: 1;
 }
 
+.clmn {
+   float:left;
+    width: 30%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 1;
+	
+}
 /* Display the columns below each other instead of side by side on small screens */
 @media (max-width: 650px) {
     .column {
@@ -266,9 +229,17 @@ nav .dropdown:hover .dropdown-content {
     }
 }
 
+ .clmn{
+		width: 29%;
+		
+	}
 /* Add some shadows to create a card effect */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.crd {
+    box-shadow: 0 4px 8px 0 ;
 }
 
 /* Some left and right padding inside the container */
@@ -278,6 +249,11 @@ nav .dropdown:hover .dropdown-content {
 
 .container .card img {
     margin-top: 5px;
+}
+
+.cntnr .crd img {
+    margin-top: 10px;
+	height: 18 px;
 }
 /* Clear floats */
 .container::after, .row::after {
@@ -305,6 +281,30 @@ h2 {
     cursor: pointer;
     width: 100%;
 }
+
+.btn {
+    border-radius: 20px;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.price {
+	font-family: Calibri;
+	font-size: 13px;
+	
+}
+
+.cntnr {
+    font-family: Calibri;
+	font-size: 15px;
+)
 
 .button:hover {
     background-color: black;
@@ -477,4 +477,91 @@ label{
     background: rgba(255, 255, 255, 0.6);
     padding: 10%;
     text-align: center;
+}
+body {
+    margin:0;
+    padding:0;
+}
+#header h1,
+#header h2,
+#header p {
+    margin-left:2%;
+    padding-right:2%;
+}
+#active2 #tab2,
+#active3 #tab3,
+#active4 #tab4,
+#active5 #tab5 {
+    font-weight:bold;
+    text-decoration:none;
+    color:#000;
+}
+#footer {
+    clear:both;
+    float:left;
+    width:100%;
+}
+#footer p {
+    margin-left:2%;
+    padding-right:2%;
+}
+
+/* Start of Column CSS */
+#container4 {
+    clear:left;
+    float:left;
+    width:100%;
+    overflow:hidden;
+    background:#b2f0f9; /* column 4 background colour */
+}
+#container3 {
+    clear:left;
+    float:left;
+    width:100%;
+    position:relative;
+    right:25%;
+    background:#89ffa2; /* column 3 background colour */
+}
+#container2 {
+    clear:left;
+    float:left;
+    width:100%;
+    position:relative;
+    right:25%;
+    background:#ffa7a7; /* column 2 background colour */
+}
+#container1 {
+    float:left;
+    width:100%;
+    position:relative;
+    right:25%;
+    background:#fff689; /* column 1 background colour */
+}
+#col1 {
+    float:left;
+    width:21%;
+    position:relative;
+    left:77%;
+    overflow:hidden;
+}
+#col2 {
+    float:left;
+    width:21%;
+    position:relative;
+    left:81%;
+    overflow:hidden;
+}
+#col3 {
+    float:left;
+    width:21%;
+    position:relative;
+    left:85%;
+    overflow:hidden;
+}
+#col4 {
+    float:left;
+    width:21%;
+    position:relative;
+    left:89%;
+    overflow:hidden;
 }
