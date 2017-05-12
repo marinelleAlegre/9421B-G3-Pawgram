@@ -20,13 +20,28 @@
         $lastName = mysqli_real_escape_string($con,$lastName);
         $firstName = stripslashes($_REQUEST['firstName']);
         $firstName = mysqli_real_escape_string($con,$firstName);
+        $address = stripslashes($_REQUEST['address']);
+        $address = mysqli_real_escape_string($con,$address);
+        $age = stripslashes($_REQUEST['age']);
+        $age = mysqli_real_escape_string($con,$age);
+        $contactNumber = stripslashes($_REQUEST['contactNumber']);
+        $contactNumber = mysqli_real_escape_string($con,$contactNumber);
+        $gender = stripslashes($_REQUEST['gender']);
+        $gender = mysqli_real_escape_string($con,$gender);
 
-		$registrationDate = date("Y-m-d");
-        $query = "INSERT into `users` (lastName, firstName, username, password, email, registrationDate, address, contactNumber) VALUES ('$lastName','$firstName', '$username', '".md5($password)."', '$email', '$registrationDate', '$address', '$contactNumber' )";
+        $registrationDate = date("Y-m-d");
+        $query = "INSERT into `registration` (lastName, firstName, username, password, email, age, gender, address, contactNumber, typeOfUser)
+        VALUES ('$lastName','$firstName', '$username', '".md5($password)."', '$email', '$age', '$gender', '$address', '$contactNumber', 'Service Provider')";
         $result = mysqli_query($con,$query);
+
+        /*$sql = "INSERT into `customer` (customerName, dateOfRegistration) VALUES ('".concat($firstName, $lastName)."', '$registrationDate')";*/
+        
         if($result){
             echo "<div class='form'><h3>You are registered successfully.</h3><br/>Click here to <a href='login.php'>Login</a></div>";
+        } else {
+            echo "Registration failed!";
         }
+
     }else{
 ?>
 <div class="form">
@@ -37,8 +52,11 @@
         <input type="text" name="username" placeholder="Username" required />
         <input type="password" name="password" placeholder="Password" required />
         <input type="email" name="email" placeholder="Email" required />
-        <inout type = "text" name="address" placeholder="Address" required />
-        <inout type = "tel" name="contactNumber" placeholder="Contact Number" required />
+        <input type = "text" name="address" placeholder="Address" required />
+        <input type = "tel" name="contactNumber" placeholder="Contact Number" required />
+        <input type = "radio" name = "gender" value="M" required/>Male
+        <input type = "radio" name = "gender" value="F" required/>Female
+        <input type = "text" name="age" placeholder="Age" required />
         <input type="submit" name="submit" value="Register" />
     </form>
 </div>
