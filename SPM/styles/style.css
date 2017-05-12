@@ -92,11 +92,8 @@ h1 {
     background-size: cover;
 }
 #store{
-    background: url("../images/background/b1.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url("../images/background/b4.jpg");
     background-size: cover;
-    height: 100vh;
 }
 
 nav ul.nav {
@@ -517,4 +514,102 @@ body {
     position:relative;
     left:89%;
     overflow:hidden;
+}
+/* NOTIFICATION SLIDE PANEL */
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+span {
+    float: left;
+    padding-top: 30px;
+}
+
+p {
+    color:black;
+}
+
+/* END OF NOTIFICATION SLIDE PANEL */
+.clmn {
+   float:left;
+    width: 30%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #91acd8;
+    
+}
+
+.clmn{
+        width: 29%;
+        
+    }
+    
+    .crd {
+    box-shadow: 0 4px 8px 0 ;
+}
+
+.cntnr .crd img {
+    margin-top: 10px;
+    height: 18 px;
+}
+
+.btn {
+    border-radius: 20px;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.price {
+    font-family: Calibri;
+    font-size: 13px;
+    
 }
