@@ -29,9 +29,9 @@
         $gender = stripslashes($_REQUEST['gender']);
         $gender = mysqli_real_escape_string($con,$gender);
 
-		$registrationDate = date("Y-m-d");
+        $registrationDate = date("Y-m-d");
         $query = "INSERT into `registration` (lastName, firstName, username, password, email, age, gender, address, contactNumber, typeOfUser)
-        VALUES ('$lastName','$firstName', '$username', '".md5($password)."', '$email', '$age', '$gender', '$address', '$contactNumber', 'Client')";
+        VALUES ('$lastName','$firstName', '$username', '".md5($password)."', '$email', '$age', '$gender', '$address', '$contactNumber', 'Service Provider')";
         $result = mysqli_query($con,$query);
 
         /*$sql = "INSERT into `customer` (customerName, dateOfRegistration) VALUES ('".concat($firstName, $lastName)."', '$registrationDate')";*/
@@ -41,22 +41,23 @@
         } else {
             echo "Registration failed!";
         }
+
     }else{
 ?>
 <div class="form">
 <h1>Registration</h1>
     <form name="registration" action="" method="post">
-        <input type = "text" name="lastName" placeholder="Lastname" required />
-        <input type = "text" name="firstName" placeholder="Firstname" required />
-        <input type = "text" name="username" placeholder="Username" required />
-        <input type = "password" name="password" placeholder="Password" required />
-        <input type = "email" name="email" placeholder="Email" required />
+        <input type="text" name="lastName" placeholder="Lastname" required />
+        <input type="text" name="firstName" placeholder="Firstname" required />
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="email" name="email" placeholder="Email" required />
         <input type = "text" name="address" placeholder="Address" required />
         <input type = "tel" name="contactNumber" placeholder="Contact Number" required />
         <input type = "radio" name = "gender" value="M" required/>Male
         <input type = "radio" name = "gender" value="F" required/>Female
         <input type = "text" name="age" placeholder="Age" required />
-        <input type = "submit" name="submit" value="Register" />
+        <input type="submit" name="submit" value="Register" />
     </form>
 </div>
 <?php } ?>
