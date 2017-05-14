@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.*;
 
 public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,21 +45,42 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>Home</title>\n");
+      out.write("        <link rel=\"stylesheet\" href=\"styles/style.css\">\n");
+      out.write("        <Link rel=\"icon\" href=\"styles/images/icon.png\">\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no\">\n");
+      out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n");
+      out.write("        <meta name=\"HandheldFriendly\" content=\"true\">\n");
       out.write("    </head>\n");
+      out.write("    \n");
       out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
-      out.write("        <form method=\"post\" action=\"index.jsp\">\n");
-      out.write("            Search <input type=text\" name=\"Search\" placeholder=\"Search service...\" />\n");
-      out.write("                   <input type=\"submit\" value=\"search\" name=\"submit\"/>\n");
-      out.write("        </form>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("        ");
+ 
+            String getService = request.getParameter("search");
+            
+            try {
+                if (getService.contains("Provides cleaning, nail trimming, sanitary trim, teeth brushing, haircut, blowdry,shampoo, bath, pedicure and ear cleaning.")) {
+                    response.sendRedirect("pawmed.html");
+                }
+                
+                if (getService.contains("grooming")) {
+                    response.sendRedirect("pawgroom.html");
+                }
+                
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
+        
       out.write("\n");
+      out.write("    </body>\n");
+      out.write("   \n");
+      out.write("    \n");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
