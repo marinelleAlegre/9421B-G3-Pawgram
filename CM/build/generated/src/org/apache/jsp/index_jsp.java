@@ -46,6 +46,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -59,63 +60,26 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    \n");
       out.write("    <body>\n");
       out.write("        ");
-
-               String getService = request.getParameter("search");
+ 
+            String getService = request.getParameter("search");
+            
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://db_ip:3306/pawgram","root", "");
-                PreparedStatement stmt = con.prepareStatement("select services from servicecategory where (services like '?';)");
-                stmt.setString(1, getService+'%');
-                ResultSet Rs = stmt.executeQuery();
-                
-                while (Rs.next()) {
-                    out.println(Rs.getString(1));
-                    out.println("<br/>");
+                if (getService.contains("health")) {
+                    response.sendRedirect("pawmed.html");
                 }
                 
-            } catch(Exception ex){
+                if (getService.contains("grooming")) {
+                    response.sendRedirect("pawgroom.html");
+                }
+                
+            } catch (Exception ex) {
                 ex.getMessage();
             }
-            
         
       out.write("\n");
-      out.write("        \n");
-      out.write("         <div id= \"nav\">\n");
-      out.write("        <nav>\n");
-      out.write("            <ul class=\"nav nav-right nav fixed\">\n");
-      out.write("            <li class=\"search\">\n");
-      out.write("                     <form method=\"post\" action=\"index.jsp\">\n");
-      out.write("                        <input type=text\" name=\"Search\" placeholder=\"Search service...\" />\n");
-      out.write("                        <input type=\"submit\" value=\"search\" name=\"submit\"/>\n");
-      out.write("                     </form>\n");
-      out.write("            </li>\n");
-      out.write("            <li><a href=\"store.html\">STORE</a></li>\n");
-      out.write("                <li><a href=\"contact.html\">CONTACT</a></li>\n");
-      out.write("                <li><a href=\"about.html\">OUR TEAM</a></li>\n");
-      out.write("                \n");
-      out.write("                <li class=\"dropdown\">\n");
-      out.write("                <a href=\"#\" class=\"dropbtn\">SERVICES</a>\n");
-      out.write("                <div class=\"dropdown-content\">\n");
-      out.write("                    <a href=\"healthypaws.html\">HealthyPaws</a>\n");
-      out.write("                    <a href=\"pawgroom.html\">PawGroom</a>\n");
-      out.write("                    <a href=\"pawmed.html\">PawMed</a>\n");
-      out.write("                    <a href=\"petvacay.html\">PetVacay</a>\n");
-      out.write("                    <a href=\"pettyshoot.html\">PettyShoot</a>\n");
-      out.write("                </div>\n");
-      out.write("                </li>\n");
-      out.write("               \n");
-      out.write("                <li><a href=\"index.html\">HOME</a></li>\n");
-      out.write("               \n");
-      out.write("            </ul>\n");
-      out.write("        </nav>\n");
-      out.write("        </div>\n");
-      out.write("        \n");
-      out.write("       \n");
-      out.write("        \n");
-      out.write(" \n");
-      out.write("\n");
-      out.write("\n");
       out.write("    </body>\n");
+      out.write("   \n");
+      out.write("    \n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
