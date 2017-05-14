@@ -3,9 +3,31 @@
 <head>
 <meta charset="utf-8">
 <title>Registration</title>
-<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/navigation.css" />
+<link rel="stylesheet" href="styles/registration.css" />
 </head>
 <body>
+
+<div id= "nav">
+        <nav>
+            <ul class="nav nav-right nav fixed">
+            <li><a href="store.html">STORE</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+                <li><a href="about.html">OUR TEAM</a></li>
+                
+                <li class="dropdown">
+                <a href="#" class="dropbtn">SERVICES</a>
+                <div class="dropdown-content">
+                    <a href="pawgroom.html">PawGroom</a>
+                    <a href="pawmed.html">PawMed</a>
+                </div>
+                </li>
+                <li><a href="index.html">HOME</a></li>
+               
+            </ul>
+        </nav>
+</div>
+
 <?php
 	require('db.php');
     // If form submitted, insert values into the database.
@@ -47,16 +69,25 @@
 <div class="form">
 <h1>Registration</h1>
     <form name="registration" action="" method="post">
+		<div class="flname">
         <input type="text" name="lastName" placeholder="Lastname" required />
         <input type="text" name="firstName" placeholder="Firstname" required />
+		</div>
+		
+		<div class="usernamepassword">
         <input type="text" name="username" placeholder="Username" required />
         <input type="password" name="password" placeholder="Password" required />
         <input type="email" name="email" placeholder="Email" required />
+		</div>
+		
+		<div class="address">
         <input type = "text" name="address" placeholder="Address" required />
         <input type = "tel" name="contactNumber" placeholder="Contact Number" required />
         <input type = "radio" name = "gender" value="M" required/>Male
         <input type = "radio" name = "gender" value="F" required/>Female
         <input type = "text" name="age" placeholder="Age" required />
+		</div>
+		
         <input type="submit" name="submit" value="Register" />
     </form>
 </div>
