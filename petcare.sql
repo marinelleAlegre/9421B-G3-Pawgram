@@ -86,11 +86,12 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customerName` varchar(45) NOT NULL,
   `status` varchar(45) NOT NULL,
   `dateOfRegistration` date NOT NULL,
   `pet_type` varchar(45) NOT NULL,
   `registration_id` int(11) NOT NULL,
+  `customerFirstName` varchar(45) NOT NULL,
+  `customerLastName` varchar(45) NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`)
@@ -165,39 +166,40 @@ LOCK TABLES `products` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `registeration`
+-- Table structure for table `registration`
 --
 
-DROP TABLE IF EXISTS `registeration`;
+DROP TABLE IF EXISTS `registration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `registeration` (
+CREATE TABLE `registration` (
   `register_id` int(11) NOT NULL AUTO_INCREMENT,
-  `lastName` varchar(45) NOT NULL,
-  `firstName` varchar(45) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `birthDate` date NOT NULL,
+  `lastName` varchar(50) NOT NULL,
+  `firstName` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `age` int(3) NOT NULL,
   `gender` enum('M','F') NOT NULL,
-  `address` varchar(45) NOT NULL,
+  `address` text NOT NULL,
   `contactNumber` int(11) NOT NULL,
   `status` enum('Accepted','Declined','Pending') NOT NULL,
-  `typeOfuser` enum('Client','Service Provider') NOT NULL,
+  `typeOfUser` enum('Customer','Service Provider') NOT NULL,
   PRIMARY KEY (`register_id`),
   UNIQUE KEY `register_id_UNIQUE` (`register_id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `registeration`
+-- Dumping data for table `registration`
 --
 
-LOCK TABLES `registeration` WRITE;
-/*!40000 ALTER TABLE `registeration` DISABLE KEYS */;
-/*!40000 ALTER TABLE `registeration` ENABLE KEYS */;
+LOCK TABLES `registration` WRITE;
+/*!40000 ALTER TABLE `registration` DISABLE KEYS */;
+INSERT INTO `registration` VALUES (11,'Derije','Franchesca Bernadette','Chesca','13134eccf270b34237ed5743eae8d272','derijefranchesca@sample.com',20,'F','Aurora hill',102030405,'Accepted','Customer'),(12,'Calub','Janby Louis','Jaby','92a3adae68adcf6f173808b05c456492','jaby@sample.com',19,'M','Bonifacio Street',1023405561,'Accepted','Customer'),(13,'Siapno','Renz Ivan','ivanpogiit','5f967e862d09cab338511f3ca3a7ddd3','pogiit@sample.com',21,'M','Aurora Hill',909867532,'Accepted','Customer'),(14,'Baucas','Marinel','marinelBaucas','90133b0b17a6bfc5db867690df94afbc','marinel@sample.com',23,'F','Balacbac',1234567890,'Accepted','Customer'),(15,'Cayabyab','Dianne Alyza','dayan','d6890a40e86d719ad665c7984a401bc9','dayan@sample.com',19,'F','La Trinidad',1928374650,'Accepted','Customer');
+/*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -209,7 +211,7 @@ DROP TABLE IF EXISTS `servicecategory`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `servicecategory` (
   `servicecategory_id` int(11) NOT NULL AUTO_INCREMENT,
-  `services` enum('Grooming','Veterinary Services','Boarding') NOT NULL,
+  `services` enum('Grooming','Veterinary Services') NOT NULL,
   `customer_id` int(11) NOT NULL,
   `serviceprovider_id` int(11) NOT NULL,
   PRIMARY KEY (`servicecategory_id`),
@@ -237,13 +239,14 @@ DROP TABLE IF EXISTS `serviceprovider`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `serviceprovider` (
   `serviceprovider_id` int(11) NOT NULL AUTO_INCREMENT,
-  `serviceproviderName` varchar(45) NOT NULL,
   `expertise` varchar(45) NOT NULL,
   `dateOfRegistration` date NOT NULL,
   `workedStarted` date NOT NULL,
   `status` enum('Busy','Inactive','Free') NOT NULL,
   `registration_id` int(11) NOT NULL,
   `servicerequest_id` int(11) NOT NULL,
+  `serviceproviderFirstName` varchar(45) NOT NULL,
+  `serviceproviderLastName` varchar(45) NOT NULL,
   PRIMARY KEY (`serviceprovider_id`),
   UNIQUE KEY `serviceprovider_id_UNIQUE` (`serviceprovider_id`),
   UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
@@ -374,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-10 23:01:37
+-- Dump completed on 2017-05-14 14:28:48
