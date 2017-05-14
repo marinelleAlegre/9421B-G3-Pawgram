@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="styles/style.css" type="text/css">
-        <link rel="stylesheet" href="styles/navigation.css" type="text/css">
+        <link rel="stylesheet" href="styles/style.css" type="text/css"/>
+        <link rel="stylesheet" href="styles/navigation.css" type="text/css"/>
         <title>Home</title>
     </head>
     <body>
@@ -40,13 +40,21 @@
         
         <section class="banner">
             <div class="inner-par">
-                <h1>Welcome to PawGram!</h1>
+               
             </div>
         </section>
        
         
-        <section class="home services">
-            <div class="inner-par">
+        <section class="home">
+            <div class="services">
+                <h1>Services</h1>
+                
+                <h2><a href="pawgroom.html">PawGroom</a></h2>
+                <p>For your grooming needs</p>
+                <h2><a href="pawmed.html">PawMed</a></h2>
+                <p>Best health care for your pet</p>
+                <h2><a href="store.html">Pet Store</a></h2>
+                <p>Providing your pet with the right stuff.</p>
                 
             </div>
         </section>
