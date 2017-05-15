@@ -34,7 +34,7 @@
                     | getService.contains("pedicure")
                     | getService.contains("ear cleaning")) {
                             
-                    response.sendRedirect("pawgroom.html");
+                    response.sendRedirect("pawgroom.jsp");
                 }
                 
                 if (getService.contains("grooming")
@@ -50,7 +50,7 @@
                     | getService.contains("senior pet health")
                     | getService.contains("confinements")) {
                     
-                    response.sendRedirect("pawmed.html");
+                    response.sendRedirect("pawmed.jsp");
                 }
                 
             } catch (Exception ex) {

@@ -45,8 +45,8 @@
         </section>
        
         
-        <section class="home">
-            <div class="services">
+        <section class="home services">
+            <div class="inner-par">
                 <h1>Services</h1>
                 
                 <h2><a href="pawgroom.html">PawGroom</a></h2>
